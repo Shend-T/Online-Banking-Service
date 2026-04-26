@@ -1,1 +1,13 @@
 frontend/node_modules
+
+backend/vendor/
+backend/node_modules/
+backend/.env
+backend/.env.*
+backend/storage/*.key
+backend/storage/logs/*
+backend/storage/framework/*
+backend/bootstrap/cache/*
+backend/public/storage
+
+TODO-Shend.md
