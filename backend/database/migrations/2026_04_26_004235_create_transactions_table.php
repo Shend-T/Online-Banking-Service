@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('account_id')->constrained()->onDelete('cascade');
+            $table->enum('type', ['deponim', 'nxerrje', 'transfer']);
+            $table->decimal('amount', 15, 2);
+            $table->string('counterparty_account')->nullable();
+            $table->decimal('balance_after', 15, 2);
             $table->timestamps();
         });
     }
