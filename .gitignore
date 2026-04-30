@@ -11,3 +11,6 @@ backend/bootstrap/cache/*
 backend/public/storage
 
 TODO-Shend.md
+
+.puml
+out/
