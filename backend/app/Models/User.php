@@ -11,6 +11,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+use App\Models\Account;
+
 #[Fillable(['name', 'last_name', 'email', 'password', 'personal_id', 'date_of_birth'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable implements MustVerifyEmail
@@ -29,5 +31,10 @@ class User extends Authenticatable implements MustVerifyEmail
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function accounts()
+    {
+        return $this->hasMany(Account::class);
     }
 }

@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminAuthController;
+
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 // Route::get('/user', function (Request $request) {
@@ -59,3 +62,11 @@ Route::get('/email/verify/{id}/{hash}', function ($id, $hash) {
 
 Route::post('/auth/forgot-password', [AuthController::class, 'forgotPassword']);
 Route::post('/auth/reset-password', [AuthController::class, 'resetPassword']);
+
+Route::post('/auth/admin', [AdminAuthController::class, 'login']);
+Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function () {
+    Route::get('/me', [AdminAuthController::class, 'me']);
+
+    Route::get('/users', [AdminController::class, 'getAllUsers']);
+    Route::get('/user/{id}', [AdminController::class, 'getUserAccountTransactions']);
+});
